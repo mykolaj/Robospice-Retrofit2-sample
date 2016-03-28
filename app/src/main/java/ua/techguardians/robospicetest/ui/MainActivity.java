@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     private void executeRequest() {
         enableRequestButton(false);
         showProgress(true);
+        showInfoMessage("");
         ApiService.MessageRequest request = new ApiService.MessageRequest(MESSAGE_ID);
         RequestListener<SingleMessageJson> listener = new RequestListener<SingleMessageJson>() {
             @Override
