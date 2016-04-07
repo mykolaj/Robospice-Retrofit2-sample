@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
-    package="ua.techguardians.robospicetest"
+    package="ua.techguardians.robospice.sample.retrofit2"
     xmlns:android="http://schemas.android.com/apk/res/android"
     >
 

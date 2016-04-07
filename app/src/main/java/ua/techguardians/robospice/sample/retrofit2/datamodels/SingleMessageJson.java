@@ -1,18 +1,21 @@
-package ua.techguardians.robospicetest.datamodels;
+package ua.techguardians.robospice.sample.retrofit2.datamodels;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+
+import android.annotation.SuppressLint;
+
+import com.google.gson.annotations.SerializedName;
 
 /**
  * Created on 3/27/16.
  */
 public class SingleMessageJson {
-    @JsonProperty("userId")
+    @SerializedName("userId")
     private long mUserId;
-    @JsonProperty("id")
+    @SerializedName("id")
     private long mId;
-    @JsonProperty("title")
+    @SerializedName("title")
     private String mTitle;
-    @JsonProperty("body")
+    @SerializedName("body")
     private String mBody;
 
     public long getUserId() {
@@ -31,6 +34,7 @@ public class SingleMessageJson {
         return mBody;
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public String toString() {
         return String.format("[userId: \"%d\", id: \"%d\", title: \"%s\", body: \"%s\"]",

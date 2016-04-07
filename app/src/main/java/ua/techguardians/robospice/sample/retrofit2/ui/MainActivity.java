@@ -1,4 +1,4 @@
-package ua.techguardians.robospicetest.ui;
+package ua.techguardians.robospice.sample.retrofit2.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,11 +14,13 @@ import com.octo.android.robospice.networkstate.NetworkStateChecker;
 import com.octo.android.robospice.persistence.DurationInMillis;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
+import com.octo.android.robospice.request.retrofit2.RetrofitSpiceRequest2;
+import com.octo.android.robospice.retrofit2.RetrofitGsonSpiceService2;
 
-import ua.techguardians.robospicetest.services.ApiService;
-import ua.techguardians.robospicetest.BuildConfig;
-import ua.techguardians.robospicetest.R;
-import ua.techguardians.robospicetest.datamodels.SingleMessageJson;
+import ua.techguardians.robospice.sample.retrofit2.BuildConfig;
+import ua.techguardians.robospice.sample.retrofit2.R;
+import ua.techguardians.robospice.sample.retrofit2.services.ApiService;
+import ua.techguardians.robospice.sample.retrofit2.datamodels.SingleMessageJson;
 
 public class MainActivity extends AppCompatActivity {
 
