@@ -1,8 +1,10 @@
 package ua.techguardians.robospice.sample.retrofit2.services;
 
+import com.octo.android.robospice.persistence.retrofit2.transformers.RetrofitGsonConvertAware;
 import com.octo.android.robospice.request.retrofit2.RetrofitSpiceRequest2;
 import com.octo.android.robospice.retrofit2.RetrofitGsonSpiceService2;
 
+import java.util.Date;
 import java.util.Locale;
 
 import retrofit2.Call;
@@ -24,25 +26,24 @@ public class ApiService extends RetrofitGsonSpiceService2 {
         return "http://jsonplaceholder.typicode.com";
     }
 
-    public static class MessageRequest extends RetrofitSpiceRequest2<SingleMessageJson, SomeWebApi> {
+    @Override
+    protected RetrofitGsonConvertAware createRetrofitToCacheConverter() {
+        // Here we set a custom converter which will set a "timestamp" field to a received server's
+        // response
+        return new CustomCacheSaver();
+    }
 
-        private final long mId;
-
-        public MessageRequest(long id) {
-            super(SingleMessageJson.class, SomeWebApi.class);
-            mId = id;
-        }
-
+    private static class CustomCacheSaver extends RetrofitGsonConvertAware {
         @Override
-        public SingleMessageJson loadDataFromNetwork() throws Exception {
-            final Call<SingleMessageJson> call = getService().getSingleMessage(mId);
-            final Response<SingleMessageJson> response = call.execute();
-            return response.body();
-        }
-
-        public String getCacheKey() {
-            return String.format(Locale.US, "id:%d", mId);
+        public String convertToString(Object object, Class<?> clzz) throws Exception {
+            if (clzz.equals(SingleMessageJson.class)) {
+                // Here you could modify any field you want inside a received object before saving
+                // it to cache.
+                // For example we set a "timestamp" field
+                ((SingleMessageJson) object).setTimestamp(new Date().toString());
+            }
+            return super.convertToString(object, clzz);
         }
     }
-    
+
 }

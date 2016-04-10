@@ -14,11 +14,10 @@ import com.octo.android.robospice.networkstate.NetworkStateChecker;
 import com.octo.android.robospice.persistence.DurationInMillis;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
-import com.octo.android.robospice.request.retrofit2.RetrofitSpiceRequest2;
-import com.octo.android.robospice.retrofit2.RetrofitGsonSpiceService2;
 
 import ua.techguardians.robospice.sample.retrofit2.BuildConfig;
 import ua.techguardians.robospice.sample.retrofit2.R;
+import ua.techguardians.robospice.sample.retrofit2.requests.MessageRequest;
 import ua.techguardians.robospice.sample.retrofit2.services.ApiService;
 import ua.techguardians.robospice.sample.retrofit2.datamodels.SingleMessageJson;
 
@@ -61,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         enableRequestButton(false);
         showProgress(true);
         showInfoMessage("");
-        ApiService.MessageRequest request = new ApiService.MessageRequest(MESSAGE_ID);
+        MessageRequest request = new MessageRequest(MESSAGE_ID);
         RequestListener<SingleMessageJson> listener = new RequestListener<SingleMessageJson>() {
             @Override
             public void onRequestFailure(SpiceException spiceException) {
