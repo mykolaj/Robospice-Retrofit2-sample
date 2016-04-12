@@ -27,6 +27,8 @@ public class ApiService extends RetrofitGsonSpiceService {
 
     @Override
     protected RetrofitGsonConvertAware createRetrofitToCacheConverter() {
+        // Typically you don't need to override this method. Override it only if a custom behavior is
+        // needed when receiving and parsing JSON responces.
         // Here we set a custom converter which will set a "timestamp" field to a received server's
         // response
         return new CustomCacheSaver();
