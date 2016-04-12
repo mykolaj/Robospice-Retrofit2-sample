@@ -1,6 +1,6 @@
 package ua.techguardians.robospice.sample.retrofit2.requests;
 
-import com.octo.android.robospice.request.retrofit2.RetrofitSpiceRequest2;
+import com.octo.android.robospice.request.retrofit2.RetrofitSpiceRequest;
 
 import java.util.Locale;
 
@@ -10,7 +10,7 @@ import ua.techguardians.robospice.sample.retrofit2.webapi.SomeWebApi;
 /**
  * Created by tony on 4/10/16.
  */
-public class MessageRequest extends RetrofitSpiceRequest2<SingleMessageJson, SomeWebApi> {
+public class MessageRequest extends RetrofitSpiceRequest<SingleMessageJson, SomeWebApi> {
 
     private final long mId;
 

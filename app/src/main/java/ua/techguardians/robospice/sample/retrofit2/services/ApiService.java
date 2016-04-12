@@ -1,8 +1,7 @@
 package ua.techguardians.robospice.sample.retrofit2.services;
 
 import com.octo.android.robospice.persistence.retrofit2.transformers.RetrofitGsonConvertAware;
-import com.octo.android.robospice.request.retrofit2.RetrofitSpiceRequest2;
-import com.octo.android.robospice.retrofit2.RetrofitGsonSpiceService2;
+import com.octo.android.robospice.retrofit2.RetrofitGsonSpiceService;
 
 import java.util.Date;
 import java.util.Locale;
@@ -12,7 +11,7 @@ import retrofit2.Response;
 import ua.techguardians.robospice.sample.retrofit2.datamodels.SingleMessageJson;
 import ua.techguardians.robospice.sample.retrofit2.webapi.SomeWebApi;
 
-public class ApiService extends RetrofitGsonSpiceService2 {
+public class ApiService extends RetrofitGsonSpiceService {
 
     @Override
     public void onCreate() {
