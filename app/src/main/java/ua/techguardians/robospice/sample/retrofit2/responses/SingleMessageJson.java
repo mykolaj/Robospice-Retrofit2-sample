@@ -1,4 +1,4 @@
-package ua.techguardians.robospice.sample.retrofit2.datamodels;
+package ua.techguardians.robospice.sample.retrofit2.responses;
 
 
 import android.annotation.SuppressLint;
@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * Created on 3/27/16.
+ * Author: Antony Mykolaj
  */
 public class SingleMessageJson {
     @SerializedName("userId")
@@ -20,7 +21,7 @@ public class SingleMessageJson {
 
     /**
      * This field is not present in a server's response. Instead it gets set by a custom converter
-     * {@link ua.techguardians.robospice.sample.retrofit2.services.ApiService.CustomCacheSaver}
+     * {@link ua.techguardians.robospice.sample.retrofit2.services.CustomResponseConverter}
      */
     private String mTimestamp;
 

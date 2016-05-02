@@ -4,11 +4,12 @@ import com.octo.android.robospice.request.retrofit2.RetrofitSpiceRequest;
 
 import java.util.Locale;
 
-import ua.techguardians.robospice.sample.retrofit2.datamodels.SingleMessageJson;
+import ua.techguardians.robospice.sample.retrofit2.responses.SingleMessageJson;
 import ua.techguardians.robospice.sample.retrofit2.webapi.SomeWebApi;
 
 /**
- * Created by tony on 4/10/16.
+ * Created on 4/10/16.
+ * Author: Antony Mykolaj
  */
 public class MessageRequest extends RetrofitSpiceRequest<SingleMessageJson, SomeWebApi> {
 

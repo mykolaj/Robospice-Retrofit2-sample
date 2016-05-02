@@ -19,7 +19,7 @@ import ua.techguardians.robospice.sample.retrofit2.BuildConfig;
 import ua.techguardians.robospice.sample.retrofit2.R;
 import ua.techguardians.robospice.sample.retrofit2.requests.MessageRequest;
 import ua.techguardians.robospice.sample.retrofit2.services.ApiService;
-import ua.techguardians.robospice.sample.retrofit2.datamodels.SingleMessageJson;
+import ua.techguardians.robospice.sample.retrofit2.responses.SingleMessageJson;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
         enableRequestButton(false);
         showProgress(true);
         showInfoMessage("");
-        MessageRequest request = new MessageRequest(MESSAGE_ID);
-        RequestListener<SingleMessageJson> listener = new RequestListener<SingleMessageJson>() {
+        final MessageRequest request = new MessageRequest(MESSAGE_ID);
+        final RequestListener<SingleMessageJson> listener = new RequestListener<SingleMessageJson>() {
             @Override
             public void onRequestFailure(SpiceException spiceException) {
                 String error = (spiceException != null) ? spiceException.getMessage() : "null";

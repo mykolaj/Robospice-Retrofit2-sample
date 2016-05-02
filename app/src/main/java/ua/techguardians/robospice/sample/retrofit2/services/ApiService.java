@@ -1,14 +1,8 @@
 package ua.techguardians.robospice.sample.retrofit2.services;
 
-import com.octo.android.robospice.persistence.retrofit2.transformers.RetrofitGsonConvertAware;
+import com.octo.android.robospice.persistence.retrofit2.converter.RetrofitGsonResponseConverter;
 import com.octo.android.robospice.retrofit2.RetrofitGsonSpiceService;
 
-import java.util.Date;
-import java.util.Locale;
-
-import retrofit2.Call;
-import retrofit2.Response;
-import ua.techguardians.robospice.sample.retrofit2.datamodels.SingleMessageJson;
 import ua.techguardians.robospice.sample.retrofit2.webapi.SomeWebApi;
 
 public class ApiService extends RetrofitGsonSpiceService {
@@ -26,25 +20,13 @@ public class ApiService extends RetrofitGsonSpiceService {
     }
 
     @Override
-    protected RetrofitGsonConvertAware createRetrofitToCacheConverter() {
-        // Typically you don't need to override this method. Override it only if a custom behavior is
-        // needed when receiving and parsing JSON responces.
-        // Here we set a custom converter which will set a "timestamp" field to a received server's
-        // response
-        return new CustomCacheSaver();
-    }
-
-    private static class CustomCacheSaver extends RetrofitGsonConvertAware {
-        @Override
-        public String convertToString(Object object, Class<?> clzz) throws Exception {
-            if (clzz.equals(SingleMessageJson.class)) {
-                // Here you could modify any field you want inside a received object before saving
-                // it to cache.
-                // For example we set a "timestamp" field
-                ((SingleMessageJson) object).setTimestamp(new Date().toString());
-            }
-            return super.convertToString(object, clzz);
-        }
+    protected RetrofitGsonResponseConverter createRetrofitToCacheConverter() {
+        // Typically you don't need to override this method. Override it only if you need
+        // to change any fields inside JSON responses before saving them into cache, or when reading
+        // saved data.
+        // Here a custom converter is created which sets a "timestamp" field inside a received
+        // server's response before saving it.
+        return new CustomResponseConverter();
     }
 
 }

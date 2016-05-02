@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "23.0.3"
     defaultConfig {
         applicationId 'ua.techguardians.robospice.sample.retrofit2'
         minSdkVersion 16
@@ -39,10 +39,9 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.2.0'
-    compile files('libs/robospice-1.5.0-SNAPSHOT.jar')
-    compile files('libs/robospice-cache-1.5.0-SNAPSHOT.jar')
-    compile files('libs/robospice-retrofit2-1.5.0-SNAPSHOT.jar')
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.octo.android.robospice:robospice:1.4.14'
+    compile files('libs/robospice-retrofit2-1.4.14-unofficial.jar')
     compile 'com.squareup.retrofit2:retrofit:2.0.0'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0'
 }
