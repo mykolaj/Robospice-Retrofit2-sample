@@ -1,3 +1,2 @@
 # RobospiceRetrofit2Test
-Demo app for testing of an early preview RoboSpice with support of a new Retrofit2 version.
-This app will be moved to the Robospice-samples submodule.
+<p>Demo app which shows how RoboSpice can be used with Retrofit of version 2.0.0 and up.</p>
