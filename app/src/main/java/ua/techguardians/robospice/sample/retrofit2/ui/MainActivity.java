@@ -1,5 +1,6 @@
 package ua.techguardians.robospice.sample.retrofit2.ui;
 
+import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +18,7 @@ import com.octo.android.robospice.request.listener.RequestListener;
 
 import ua.techguardians.robospice.sample.retrofit2.BuildConfig;
 import ua.techguardians.robospice.sample.retrofit2.R;
+import ua.techguardians.robospice.sample.retrofit2.errors.CustomRequestFailureException;
 import ua.techguardians.robospice.sample.retrofit2.requests.MessageRequest;
 import ua.techguardians.robospice.sample.retrofit2.services.ApiService;
 import ua.techguardians.robospice.sample.retrofit2.responses.SingleMessageJson;
@@ -62,16 +64,43 @@ public class MainActivity extends AppCompatActivity {
         showInfoMessage("");
         final MessageRequest request = new MessageRequest(MESSAGE_ID);
         final RequestListener<SingleMessageJson> listener = new RequestListener<SingleMessageJson>() {
+            @SuppressLint({"DefaultLocale", "LongLogTag"})
             @Override
             public void onRequestFailure(SpiceException spiceException) {
-                String error = (spiceException != null) ? spiceException.getMessage() : "null";
-                String message = String.format("Request executed with error: '%s'", error);
+
+                // If we throw an instance of our custom Exception implementation from MessageRequest.loadDataFromNetwork() method
+                // we can get an instance of that class and analyze it's data.
+
+                Throwable rootException = spiceException != null ? spiceException.getCause() : null;
+                CustomRequestFailureException requestFailureException = (CustomRequestFailureException) rootException;
+                String message = null;
+
+                if (requestFailureException != null) {
+
+                    // Here we can get an HTTP status code and do custom actions depending on it.
+                    // For the sake of example lets just print it to a log output.
+
+                    final int httpStatusCode = requestFailureException.getHttpStatusCode();
+                    final String serverMessage = requestFailureException.getMessage();
+                    final String errorBody = requestFailureException.getErrorBody();
+                    message = String.format("Request failed: http_status=%d," +
+                            " message='%s'," +
+                            " errorBody='%s'",
+                            httpStatusCode,
+                            serverMessage,
+                            errorBody);
+                } else {
+                    message = String.format("Request failed: '%s'",
+                            spiceException != null ? spiceException.getMessage() : "null");
+                }
+
                 Log.e(LOG_TAG, message);
                 enableRequestButton(true);
                 showInfoMessage(message);
                 showProgress(false);
             }
 
+            @SuppressLint("LongLogTag")
             @Override
             public void onRequestSuccess(SingleMessageJson singleMessageJson) {
                 String result = (singleMessageJson != null) ? singleMessageJson.toString() : "null";

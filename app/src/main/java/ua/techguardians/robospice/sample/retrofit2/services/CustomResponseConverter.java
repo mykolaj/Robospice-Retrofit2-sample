@@ -9,7 +9,7 @@ import ua.techguardians.robospice.sample.retrofit2.responses.SingleMessageJson;
 
 /**
  * Created on 5/7/16.
- * Author: Antony Mykolaj
+ * Author: Anton Mykolaichuk
  */
 class CustomResponseConverter extends RetrofitGsonResponseConverter {
     @Override

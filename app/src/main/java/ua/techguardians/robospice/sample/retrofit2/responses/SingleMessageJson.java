@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * Created on 3/27/16.
- * Author: Antony Mykolaj
+ * Author: Anton Mykolaichuk
  */
 public class SingleMessageJson {
     @SerializedName("userId")
